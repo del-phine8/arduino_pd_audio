@@ -33,8 +33,7 @@ void loop()
   if (bouton.pressed()) 
   {
     etatDel = !etatDel; //envoie le contraire de etatdel : etatdel commence a 0 donc quand on appuie ca va etre 1 et ca continue a flip
-
-    Serial.print("bouton1 "); // nomme le bouton pour différencier dans Pd, ecrire "route bouton1" fait en sorte que ca ignore bouton1 et print directement 1
+   Serial.print("bouton1 "); // nomme le bouton pour différencier dans Pd, ecrire "route bouton1" fait en sorte que ca ignore bouton1 et print directement 1
     if (etatDel == true) {
       Serial.print(1);
     } else {
