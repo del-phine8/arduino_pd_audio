@@ -9,8 +9,10 @@ Bounce2::Button bouton2;
 #define BROCHE_BOUTON 2 // defini la broche sur le arduino qu'on nomme BROCHE_BOUTON
 #define BROCHE_BOUTON2 4
 #define BROCHE_DEL 3
+#define BROCHE_DEL2 5
 
 bool etatDel = LOW;
+bool etatDel2 = LOW;
 
 void setup()
 {
@@ -23,6 +25,8 @@ void setup()
   //setup pour del
   pinMode(BROCHE_DEL, OUTPUT);
   digitalWrite(BROCHE_DEL, etatDel);
+  pinMode(BROCHE_DEL2, OUTPUT);
+  digitalWrite(BROCHE_DEL2, etatDel2);
 }
 
 void loop()
@@ -45,8 +49,15 @@ void loop()
   }
 
   if(bouton2.pressed()) { // pour verifier l'autre bouton, on doit faire un autre if
-    Serial.print("bouton2 "); 
-    Serial.print(1);
+    etatDel2 = !etatDel2; //envoie le contraire de etatdel : etatdel commence a 0 donc quand on appuie ca va etre 1 et ca continue a flip
+    Serial.print("bouton2 "); // nomme le bouton pour différencier dans Pd, ecrire "route bouton1" fait en sorte que ca ignore bouton1 et print directement 1
+    if (etatDel2 == true) {
+      Serial.print(1);
+    } else {
+      Serial.print(0);
+    }
     Serial.println();
+
+    digitalWrite(BROCHE_DEL2, etatDel2);
   }
 }
